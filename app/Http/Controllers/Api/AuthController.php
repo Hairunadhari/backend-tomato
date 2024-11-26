@@ -13,6 +13,8 @@ class AuthController extends Controller
 {
        /**
      * Register.
+     * @unauthenticated
+     * 
      */
     public function register(Request $request)
     {
