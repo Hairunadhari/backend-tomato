@@ -30,6 +30,9 @@ use App\Http\Controllers\Api\ApiKategoriController;
 Route::get('/kategori/{id}/produk',[ApiKategoriController::class, 'getProdukByKategori']);
 
 Route::get('/produk',[ApiProdukController::class, 'index']);
+Route::get('/tes', function () {
+    return response()->json(['status' => 'success']);
+});
 Route::get('/produk/{id}',[ApiProdukController::class, 'detail']);
 
 Route::post('/register',[AuthController::class, 'register']);
