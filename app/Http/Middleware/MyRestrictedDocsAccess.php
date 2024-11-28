@@ -11,16 +11,23 @@ class MyRestrictedDocsAccess
 {
     public function handle($request, Closure $next)
     {
-        // Cek apakah aplikasi sedang berjalan di environment lokal
-        if (app()->environment('local')) {
+        // // Cek apakah aplikasi sedang berjalan di environment lokal
+        // if (app()->environment('local')) {
+        //     return $next($request);  // Lanjutkan jika di environment lokal
+        // }
+    
+        // // Cek apakah pengguna memiliki izin untuk melihat dokumentasi API
+        // if (Gate::allows('viewApiDocs')) {
+        //     return $next($request);  // Lanjutkan jika akses diizinkan
+        // }
+    
+        // abort(403);  // Tolak akses jika tidak memenuhi syarat
+         // Cek apakah aplikasi berjalan di environment lokal
+         if (app()->environment('local')) {
             return $next($request);  // Lanjutkan jika di environment lokal
         }
     
-        // Cek apakah pengguna memiliki izin untuk melihat dokumentasi API
-        if (Gate::allows('viewApiDocs')) {
-            return $next($request);  // Lanjutkan jika akses diizinkan
-        }
-    
-        abort(403);  // Tolak akses jika tidak memenuhi syarat
+        // Tidak ada pembatasan akses, langsung lanjutkan permintaan
+        return $next($request);
     }
 }
