@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\OrderController;
-use App\Http\Controllers\RajaOngkirController;
+// use App\Http\Controllers\RajaOngkirController;
 use App\Http\Controllers\Api\ApiProdukController;
 use App\Http\Controllers\Api\ApiKategoriController;
 
@@ -23,9 +23,9 @@ use App\Http\Controllers\Api\ApiKategoriController;
 //     return $request->user();
 // });
 
-Route::get('/province',[RajaOngkirController::class, 'getProvince']);
-Route::get('/cityByProvince/{id}',[RajaOngkirController::class, 'getCity']);
-Route::post('/cost',[RajaOngkirController::class, 'cost']);
+// Route::get('/province',[RajaOngkirController::class, 'getProvince']);
+// Route::get('/cityByProvince/{id}',[RajaOngkirController::class, 'getCity']);
+// Route::post('/cost',[RajaOngkirController::class, 'cost']);
 
 Route::get('/kategori/{id}/produk',[ApiKategoriController::class, 'getProdukByKategori']);
 
