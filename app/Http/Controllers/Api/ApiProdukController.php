@@ -10,6 +10,7 @@ class ApiProdukController extends Controller
 {
     /**
      * List Produk.
+     * @unauthenticated
      */
     public function index()
     {
@@ -33,6 +34,7 @@ class ApiProdukController extends Controller
     
     /**
      * Detail Produk.
+     * @unauthenticated
      */
     public function detail($id){
         $data = Produk::where('id',$id)->paginate(10);

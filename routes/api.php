@@ -27,20 +27,21 @@ use App\Http\Controllers\Api\ApiKategoriController;
 // Route::get('/cityByProvince/{id}',[RajaOngkirController::class, 'getCity']);
 // Route::post('/cost',[RajaOngkirController::class, 'cost']);
 
+Route::get('/kategori',[ApiKategoriController::class, 'index']);
 Route::get('/kategori/{id}/produk',[ApiKategoriController::class, 'getProdukByKategori']);
 
 Route::get('/produk',[ApiProdukController::class, 'index']);
+Route::get('/produk/{id}',[ApiProdukController::class, 'detail']);
+
 Route::get('/tes', function () {
     return response()->json(['status' => 'success']);
 });
-Route::get('/produk/{id}',[ApiProdukController::class, 'detail']);
 
 Route::post('/register',[AuthController::class, 'register']);
 Route::post('/login',[AuthController::class, 'login']);
 Route::post('/logout',[AuthController::class, 'logout']);
 
 Route::middleware('auth:sanctum')->group( function () {
-    Route::get('/kategori',[ApiKategoriController::class, 'index']);
     Route::get('/cekAuth',[AuthController::class, 'cekAuth']);
     Route::get('/order', [OrderController::class, 'orderByUser']);
     Route::post('/order/create', [OrderController::class, 'submitOrder']);

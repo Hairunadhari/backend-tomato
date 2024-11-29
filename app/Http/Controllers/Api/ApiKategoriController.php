@@ -11,6 +11,7 @@ class ApiKategoriController extends Controller
 {
     /**
      * List Kategori.
+     * @unauthenticated
      */
     public function index()
 {
@@ -35,6 +36,7 @@ class ApiKategoriController extends Controller
 
     /**
      * Get Produk By Kategori.
+     * @unauthenticated
      */
     public function getProdukByKategori($id){
         $data = Kategori::with('produk')->where('id',$id)->paginate(10);
