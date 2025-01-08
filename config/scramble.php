@@ -81,7 +81,7 @@ return [
 
     'middleware' => [
         'web',
-        MyRestrictedDocsAccess::class,
+        // MyRestrictedDocsAccess::class,
     ],
 
     'extensions' => [],
