@@ -79,10 +79,10 @@ return [
      */
     'servers' => null,
 
-    'middleware' => [
-        'web',
-        // MyRestrictedDocsAccess::class,
-    ],
+    // 'middleware' => [
+    //     'web',
+    //     MyRestrictedDocsAccess::class,
+    // ],
 
     'extensions' => [],
 ];
