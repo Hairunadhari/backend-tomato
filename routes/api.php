@@ -39,10 +39,10 @@ Route::get('/tes', function () {
 
 Route::post('/register',[AuthController::class, 'register']);
 Route::post('/login',[AuthController::class, 'login']);
-Route::post('/logout',[AuthController::class, 'logout']);
 
 Route::middleware('auth:sanctum')->group( function () {
     Route::get('/cekAuth',[AuthController::class, 'cekAuth']);
     Route::get('/order', [OrderController::class, 'orderByUser']);
     Route::post('/order/create', [OrderController::class, 'submitOrder']);
+    Route::post('/logout',[AuthController::class, 'logout']);
 });

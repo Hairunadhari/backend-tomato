@@ -26,7 +26,6 @@ class MyRestrictedDocsAccess
          if (app()->environment('local')) {
             return $next($request);  // Lanjutkan jika di environment lokal
         }
-    
         // Tidak ada pembatasan akses, langsung lanjutkan permintaan
         return $next($request);
     }

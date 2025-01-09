@@ -49,32 +49,46 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
-        
-        $credentials = $request->only('email', 'password');
-    
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user(); 
-            $success['token'] =  $user->createToken('MyApp')->plainTextToken; 
-            $success['name'] =  $user->name;
-            $success['id'] =  $user->id;
-
-    
-            return response()->json([
-                'success'=>true,
-                'message' => 'Sukses login',
-                'user' => $success,
+        try {
+            // Validasi input
+            $validatedData = $request->validate([
+                'email' => ['required', 'email'],
+                'password' => ['required'],
             ]);
-        }
     
-        return response()->json([
-            'success'=>false,
-            'message' => 'Unauthorized',
-        ]);
+            // Ambil kredensial
+            $credentials = $request->only('email', 'password');
+    
+            // Proses login
+            if (Auth::attempt($credentials)) {
+                $user = Auth::user();
+    
+                // Buat token
+                $token = $user->createToken('MyApp')->plainTextToken;
+    
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Sukses login',
+                    'user' => [
+                        'token' => $token,
+                        'name' => $user->name,
+                        'id' => $user->id,
+                    ],
+                ], 200);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Email atau password salah',
+                ], 401);
+            }
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success' => false,
+                'message' => $th->getMessage(),
+            ], 500);
+        }
     }
+    
     
      /**
      * Cek Auth User.
